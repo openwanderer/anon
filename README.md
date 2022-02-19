@@ -2,8 +2,8 @@
 
 This is an experimental application to obfuscate faces and license plates in OpenWanderer projects. Note that it makes use of these existing anonymisers:
 
--[understand.ai Anonymizer](https://github.com/understand-ai/anonymizer)
--[Tyndare blur_persons](https://github.com/tyndare/blur-persons)
+- [understand.ai Anonymizer](https://github.com/understand-ai/anonymizer)
+- [Tyndare blur_persons](https://github.com/tyndare/blur-persons)
 
 Both these libraries are included in this repository for easy installation; I have also modified their code slightly to make it work with this application. The code from these repositories was taken in autumn 2020 (as at Feb 2022, this remains the most recent version for both). 
 
@@ -24,8 +24,7 @@ The sequence of commands to do all this is
 python3 -m venv ~/.virtualenvs/anonymizer
 source ~/.virtualenvs/anonymizer/bin/activate
 
-git clone https://github.com/understand-ai/anonymizer
-cd anonymizer
+git clone https://github.com/openwanderer/anon.git
 
 pip3 install -r requirements.txt
 ```
@@ -39,7 +38,7 @@ python3 anon.py [-a anonymiser] [-f startPanoID] [-t endPanoID] [-a anonymizer] 
 - The `anonymiser` should be either `understandai` (default) or `blur_persons`.
 - `startPanoID` and `endPanoID` define the range of panorama IDs in the database to anonymise. If not specified, all unauthorised panoramas will be anonymised.
 - `InputImageDirectory` is the location of the unanonymised images.
-- `OutputImageDirectory` is the location to write out the anonymised images/
+- `OutputImageDirectory` is the location to write out the anonymised images
 
 ## Performance
 
