@@ -7,7 +7,7 @@ This is an experimental application to obfuscate faces and license plates in Ope
 
 Both these libraries are included in this repository for easy installation; I have also modified their code slightly to make it work with this application. The code from these repositories was taken in autumn 2020 (as at Feb 2022, this remains the most recent version for both). 
 
-Please see the individual licensing for the two anonymiserd. The rest of the code is the OpenWanderer project's own code and is licensed under the LGPL.
+Please see the individual licensing for the two anonymisers. The rest of the code is the OpenWanderer project's own code and is licensed under the LGPL.
 
 ## What does it do?
 
