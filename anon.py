@@ -18,7 +18,8 @@ def main(argv):
 
     args = parser.parse_args()
 
-    results = find_unauthorised(args.startid, args.endid)
+    conn = psycopg2.connect('dbname=gis user=gis')
+    results = find_unauthorised(conn, args.startid, args.endid)
     if(len(results) == 0):
         print ("No Results")
     else:
@@ -27,14 +28,19 @@ def main(argv):
             detect_blur_persons(ids, args.srcdir, args.destdir)
         else:
             detect_understandai_anonymizer(ids, args.srcdir, args.destdir)
+        authorise_panos(conn, ids)
                 
 
-def find_unauthorised(startid=1, endid=9999):
-    conn = psycopg2.connect('dbname=gis user=gis')
+def find_unauthorised(conn, startid=1, endid=9999):
     cur = conn.cursor()
     cur.execute(f"SELECT id FROM panoramas WHERE authorised=0 AND id BETWEEN {startid} AND {endid} ORDER BY id")
     results = cur.fetchall()
     return results
+
+def authorise_panos(conn, ids):
+    cur = conn.cursor()
+    for id in ids:
+        cur.execute(f"UPDATE panoramas SET authorised=1 WHERE id={id}")
 
 def detect_blur_persons(ids, input_path, output_path):
     filenames = [f"{input_path}/{i}.jpg" for i in ids]
